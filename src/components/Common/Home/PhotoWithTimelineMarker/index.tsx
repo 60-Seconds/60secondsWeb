@@ -9,8 +9,7 @@ import Img6 from "../../../../assets/대구 지하철 화�
 import Img7 from "../../../../assets/국화꽃png-removebg-preview.png";
 import API from "../../../../util/api";
 import { HomeType } from "../../../../types/Home";
-import { useNavigate } from "react-router-dom";
-import Details from "../../../Details";
+import { useNavigate, useLocation } from "react-router-dom";
 
 export default function PhotoWithTimelineMarker() {
   const navigate = useNavigate();
@@ -27,6 +26,11 @@ export default function PhotoWithTimelineMarker() {
       info: "",
     },
   ]);
+
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
 
   useEffect(() => {
     const fetchData = async () => {
