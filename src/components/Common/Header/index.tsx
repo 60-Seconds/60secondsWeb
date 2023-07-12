@@ -1,7 +1,7 @@
 import React from "react";
 import * as S from "./style";
 import Logo from "../../../assets/logo.png";
-import { useLocation, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
 export default function Header() {
   const navigate = useNavigate();

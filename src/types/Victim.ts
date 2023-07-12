@@ -1,5 +1,5 @@
-export interface Victim {
-  idx: string;
+export interface VictimType {
+  idx: number;
   disasterIdx: number;
   name: string;
   gender: string;
