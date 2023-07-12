@@ -1,5 +1,6 @@
 import React from "react";
 import * as S from "./style";
+import Logo from "../../../assets/logo.png";
 import { useLocation, useNavigate } from "react-router-dom";
 
 export default function Header() {
@@ -7,7 +8,7 @@ export default function Header() {
   return (
     <header>
       <S.Header>
-        <S.HeaderTitle>We’member</S.HeaderTitle>
+        <S.HeaderTitle src={Logo} onClick={() => navigate("/")}></S.HeaderTitle>
         <S.HeaderCategories>
           <S.Element onClick={() => navigate("/Accident")}>사건등록</S.Element>
           <S.Element onClick={() => navigate("/VictimRegistration")}>
