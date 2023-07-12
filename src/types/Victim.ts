@@ -1,4 +1,4 @@
-export interface Victim {
+export interface VictimType {
   idx: string;
   disasterIdx: number;
   name: string;

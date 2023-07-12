@@ -16,12 +16,9 @@ export default function Accident() {
     info: "",
   });
 
-  const handleChangerData = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setPost({ ...post, [name]: value });
-    console.log(name + value);
-  };
-  const handleChangerTextArea = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+  const handleChangerData = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>
+  ) => {
     const { name, value } = e.target;
     setPost({ ...post, [name]: value });
     console.log(name + value);
@@ -113,7 +110,7 @@ export default function Accident() {
             name="info"
             placeholder="사고내용을 입력해주세요."
             value={post.info}
-            onChange={handleChangerTextArea}
+            onChange={handleChangerData}
           />
         </div>
         <S.SubmitBtn onClick={handleSubmitPost}>사건 등록하기</S.SubmitBtn>

@@ -1,13 +1,14 @@
 import styled from "styled-components";
 
 export const InformationCreationContainer = styled.div`
-  margin-top: 12%;
+  margin-top: 10%;
   margin-left: 27%;
 `;
 
 export const BigTitle = styled.h1`
   display: flex;
   margin-left: 23%;
+  margin-bottom: 8%;
 `;
 
 export const Title = styled.h4`
@@ -20,6 +21,8 @@ export const Title = styled.h4`
 `;
 
 export const Input1 = styled.input`
+  padding-right: 1%;
+  padding-top: 1%;
   width: 60%;
   height: 40px;
   flex-shrink: 0;
@@ -30,6 +33,19 @@ export const Input1 = styled.input`
 `;
 
 export const Input2 = styled.input`
+  padding-right: 1%;
+  padding-top: 1%;
+  width: 110%;
+  height: 30px;
+  flex-shrink: 0;
+  margin-right: 10%;
+
+  border-radius: 2px;
+  border: 1px solid var(--f-2-f-2-f-2, #f2f2f2);
+  background: var(--fbfbfa, #fbfbfa);
+`;
+
+export const Select = styled.select`
   width: 110%;
   height: 30px;
   flex-shrink: 0;
@@ -53,6 +69,8 @@ export const OtherElement = styled.div`
 `;
 
 export const Textarea = styled.textarea`
+  padding-left: 1%;
+  padding-top: 1%;
   width: 60%;
   height: 250px;
   flex-shrink: 0;
@@ -60,6 +78,7 @@ export const Textarea = styled.textarea`
   border-radius: 2px;
   border: 1px solid var(--f-2-f-2-f-2, #f2f2f2);
   background: var(--fbfbfa, #fbfbfa);
+  resize: none;
 `;
 
 export const SubmitBtn = styled.button`
