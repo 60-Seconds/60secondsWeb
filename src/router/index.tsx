@@ -9,7 +9,7 @@ export default function Router() {
   return (
     <Routes>
       <Route path="/" element={<HomePage />} />
-      <Route path="/Details" element={<Details />} />
+      <Route path="/Details/:idxValue" element={<Details />} />
       <Route path="/Accident" element={<Accident />} />
       <Route path="/Victim" element={<Victim />} />
     </Routes>

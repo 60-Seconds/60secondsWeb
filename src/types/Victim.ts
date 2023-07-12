@@ -1,5 +1,5 @@
 export interface VictimType {
-  idx: string;
+  idx: number;
   disasterIdx: number;
   name: string;
   gender: string;

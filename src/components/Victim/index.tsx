@@ -6,7 +6,7 @@ import { VictimType } from "../../types/Victim";
 
 export default function Victim() {
   const [post, setPost] = useState<VictimType>({
-    idx: "",
+    idx: 0,
     disasterIdx: 0,
     name: "",
     gender: "",

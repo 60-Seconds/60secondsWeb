@@ -10,10 +10,10 @@ import Img7 from "../../../../assets/국화꽃png-removebg-previe
 import API from "../../../../util/api";
 import { HomeType } from "../../../../types/Home";
 import { useNavigate } from "react-router-dom";
+import Details from "../../../Details";
 
 export default function PhotoWithTimelineMarker() {
   const navigate = useNavigate();
-  const [detailsName, setDetailsName] = useState<string>("");
   const [getItem, setGetItem] = useState<HomeType[]>([
     {
       idx: 0,
@@ -33,7 +33,7 @@ export default function PhotoWithTimelineMarker() {
       try {
         const response = await API.get(`/v2/disaster/getList?type=nul`);
         const { data } = response.data;
-        console.log(data);
+        console.log("data", data);
         setGetItem(data);
       } catch (error) {
         console.log(error);
@@ -72,6 +72,10 @@ export default function PhotoWithTimelineMarker() {
     setIsHovered(false);
   };
 
+  const handleChangerPage = (idx: number) => {
+    navigate(`/Details/${idx}`);
+  };
+
   return (
     <>
       <S.ImgBox>
@@ -88,10 +92,7 @@ export default function PhotoWithTimelineMarker() {
                   ? "0.4"
                   : "10",
             }}
-            onClick={() => {
-              navigate("/Details");
-              setDetailsName("광주 화정 아이파크 붕괴 사고");
-            }}
+            onClick={() => handleChangerPage(getItem[0].idx)}
           ></S.Img>
           <div>
             {(hoveredImageName === "1" || selectedCircle === "1") &&
@@ -109,10 +110,7 @@ export default function PhotoWithTimelineMarker() {
                   ? "0.4"
                   : "10",
             }}
-            onClick={() => {
-              navigate("/Details");
-              setDetailsName("성수대교 붕괴 사고");
-            }}
+            onClick={() => handleChangerPage(getItem[1].idx)}
           />
           <div>
             {(hoveredImageName === "2" || selectedCircle === "2") &&
@@ -130,10 +128,7 @@ export default function PhotoWithTimelineMarker() {
                   ? "0.4"
                   : "10",
             }}
-            onClick={() => {
-              navigate("/Details");
-              setDetailsName("삼풍백화점 붕괴 사고");
-            }}
+            onClick={() => handleChangerPage(getItem[2].idx)}
           />
           <div>
             {(hoveredImageName === "3" || selectedCircle === "3") &&
@@ -153,10 +148,7 @@ export default function PhotoWithTimelineMarker() {
               }}
               onMouseEnter={() => handleCircleMouseEnter("1")}
               onMouseLeave={handleCircleMouseLeave}
-              onClick={() => {
-                navigate("/Details");
-                setDetailsName("광주 화정 아이파크 붕괴 사고");
-              }}
+              onClick={() => handleChangerPage(getItem[0].idx)}
             ></S.Circle>
             <S.Circle
               className="2"
@@ -168,10 +160,7 @@ export default function PhotoWithTimelineMarker() {
               }}
               onMouseEnter={() => handleCircleMouseEnter("2")}
               onMouseLeave={handleCircleMouseLeave}
-              onClick={() => {
-                navigate("/Details");
-                setDetailsName("성수대교 붕괴 사고");
-              }}
+              onClick={() => handleChangerPage(getItem[1].idx)}
             ></S.Circle>
             <S.Circle
               className="3"
@@ -183,10 +172,7 @@ export default function PhotoWithTimelineMarker() {
               }}
               onMouseEnter={() => handleCircleMouseEnter("3")}
               onMouseLeave={handleCircleMouseLeave}
-              onClick={() => {
-                navigate("/Details");
-                setDetailsName("삼풍백화점 붕괴 사고");
-              }}
+              onClick={() => handleChangerPage(getItem[2].idx)}
             ></S.Circle>
           </S.CircleContainer>
           <S.DataInfoBox>
@@ -215,10 +201,7 @@ export default function PhotoWithTimelineMarker() {
                   ? "0.4"
                   : "10",
             }}
-            onClick={() => {
-              navigate("/Details");
-              setDetailsName("금릉 버스 추락 사고");
-            }}
+            onClick={() => handleChangerPage(getItem[3].idx)}
           />
           <div>
             {(hoveredImageName === "4" || selectedCircle === "4") &&
@@ -237,12 +220,7 @@ export default function PhotoWithTimelineMarker() {
                   ? "0.4"
                   : "10",
             }}
-            onClick={() => {
-              navigate("/Details");
-              setDetailsName(
-                "서해안고속도로서해대교 29중 추돌사고"
-              );
-            }}
+            onClick={() => handleChangerPage(getItem[4].idx)}
           />
           <div>
             {(hoveredImageName === "5" || selectedCircle === "5") &&
@@ -260,10 +238,7 @@ export default function PhotoWithTimelineMarker() {
                   ? "0.4"
                   : "10",
             }}
-            onClick={() => {
-              navigate("/Details");
-              setDetailsName("대구 지하철 화제 사고");
-            }}
+            onClick={() => handleChangerPage(getItem[5].idx)}
           />
           <div>
             {(hoveredImageName === "6" || selectedCircle === "6") &&
@@ -283,10 +258,7 @@ export default function PhotoWithTimelineMarker() {
               }}
               onMouseEnter={() => handleCircleMouseEnter("4")}
               onMouseLeave={handleCircleMouseLeave}
-              onClick={() => {
-                navigate("/Details");
-                setDetailsName("금릉 버스 추락 사고");
-              }}
+              onClick={() => handleChangerPage(getItem[3].idx)}
             ></S.Circle>
             <S.Circle
               className="5"
@@ -298,12 +270,7 @@ export default function PhotoWithTimelineMarker() {
               }}
               onMouseEnter={() => handleCircleMouseEnter("5")}
               onMouseLeave={handleCircleMouseLeave}
-              onClick={() => {
-                navigate("/Details");
-                setDetailsName(
-                  "서해안고속도로서해대교 29중 추돌사고"
-                );
-              }}
+              onClick={() => handleChangerPage(getItem[4].idx)}
             ></S.Circle>
             <S.Circle
               className="6"
@@ -315,10 +282,7 @@ export default function PhotoWithTimelineMarker() {
               }}
               onMouseEnter={() => handleCircleMouseEnter("6")}
               onMouseLeave={handleCircleMouseLeave}
-              onClick={() => {
-                navigate("/Details");
-                setDetailsName("대구 지하철 화제 사고");
-              }}
+              onClick={() => handleChangerPage(getItem[5].idx)}
             ></S.Circle>
           </S.CircleContainer>
           <S.DataInfoBox>
