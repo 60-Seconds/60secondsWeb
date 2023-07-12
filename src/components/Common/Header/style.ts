@@ -13,15 +13,27 @@ export const Header = styled.div`
   z-index: 1;
   background-color: #fbfbfa;
 `;
-export const HeaderTitle = styled.div`
-  width: 100%;
+export const HeaderTitle = styled.img`
+  width: 7%;
+  height: auto;
   margin-left: 10%;
+  cursor: pointer;
 `;
 export const HeaderCategories = styled.div`
   width: 100%;
   display: flex;
-  margin-left: 35%;
+  margin-left: 60%;
 `;
 export const Element = styled.div`
   margin-left: 15%;
+  color: #000;
+  font-family: Noto Sans;
+  font-size: 15px;
+  font-style: normal;
+  font-weight: 500;
+  line-height: normal;
+  cursor: pointer;
+  &:hover {
+    color: #3d52e3;
+  }
 `;

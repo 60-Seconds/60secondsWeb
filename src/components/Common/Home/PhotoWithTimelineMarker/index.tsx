@@ -1,27 +1,55 @@
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import * as S from "./style";
 import Img1 from "../../../../assets/광주 화정 아이파크 붕괴 사고 1.png";
-import Img2 from "../../../../assets/금릉 버스 추락 사고 1968.png";
-import Img3 from "../../../../assets/대구 지하철 화제 사고 1.png";
-import Img4 from "../../../../assets/삼풍백화점 붕괴 사고 1.png";
+import Img4 from "../../../../assets/금릉 버스 추락 사고 1968.png";
+import Img6 from "../../../../assets/대구 지하철 화제 사고 1.png";
+import Img3 from "../../../../assets/삼풍백화점 붕괴 사고 1.png";
 import Img5 from "../../../../assets/서해안고속도로서해대교 29중 추돌사고 1.png";
-import Img6 from "../../../../assets/성수대교 붕괴 사고 1995.png";
+import Img2 from "../../../../assets/성수대교 붕괴 사고 1995.png";
 import Img7 from "../../../../assets/국화꽃png-removebg-preview.png";
+import API from "../../../../util/api";
+import { HomeType } from "../../../../types/Home";
 
 export default function PhotoWithTimelineMarker() {
-  const dataInfo = {
-    days: ["1967.10.16", "1994.10.21", "1995.06.29"],
-    explanation: [
-      "금릉 버스 추락 사고",
-      "성수대교 붕괴 사고",
-      "삼풍백화점 붕괴 사고",
-    ],
-  };
+  const [getItem, setGetItem] = useState<HomeType[]>([
+    {
+      idx: 0,
+      type: "",
+      name: "",
+      datetime: "",
+      location: "",
+      dead: "",
+      injury: "",
+      missing: "",
+      info: "",
+    },
+  ]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const response = await API.get(`/v2/disaster/getList?type=nul`);
+        const { data } = response.data;
+        console.log("data");
+        setGetItem(data);
+      } catch (error) {
+        console.log(error);
+      }
+    };
+
+    fetchData();
+  }, []);
+
+  useEffect(() => {
+    console.log("getitem");
+    console.log(getItem);
+  }, [getItem]);
+
   const [hoveredImageName, setHoveredImageName] = useState("");
   const [selectedCircle, setSelectedCircle] = useState("");
   const [isHovered, setIsHovered] = useState(false);
 
-  const handleImgMouseEnter = (imageName) => {
+  const handleImgMouseEnter = (imageName: string) => {
     setHoveredImageName(imageName);
     setIsHovered(true);
   };
@@ -31,7 +59,7 @@ export default function PhotoWithTimelineMarker() {
     setIsHovered(false);
   };
 
-  const handleCircleMouseEnter = (circleName) => {
+  const handleCircleMouseEnter = (circleName: string) => {
     setSelectedCircle(circleName);
     setIsHovered(true);
   };
@@ -46,7 +74,7 @@ export default function PhotoWithTimelineMarker() {
       <S.ImgBox>
         <S.ImgContainer>
           <S.Img
-            name="1"
+            className="1"
             src={Img1}
             alt="error"
             onMouseEnter={() => handleImgMouseEnter("1")}
@@ -63,7 +91,7 @@ export default function PhotoWithTimelineMarker() {
               isHovered && <S.Flower src={Img7} alt="error" />}
           </div>
           <S.Img
-            name="2"
+            className="2"
             src={Img2}
             alt="error"
             onMouseEnter={() => handleImgMouseEnter("2")}
@@ -80,7 +108,7 @@ export default function PhotoWithTimelineMarker() {
               isHovered && <S.Flower src={Img7} alt="error" />}
           </div>
           <S.Img
-            name="3"
+            className="3"
             src={Img3}
             alt="error"
             onMouseEnter={() => handleImgMouseEnter("3")}
@@ -101,7 +129,7 @@ export default function PhotoWithTimelineMarker() {
           <S.Bar1></S.Bar1>
           <S.CircleContainer>
             <S.Circle
-              name="1"
+              className="1"
               style={{
                 backgroundColor:
                   hoveredImageName === "1" || selectedCircle === "1"
@@ -112,7 +140,7 @@ export default function PhotoWithTimelineMarker() {
               onMouseLeave={handleCircleMouseLeave}
             ></S.Circle>
             <S.Circle
-              name="2"
+              className="2"
               style={{
                 backgroundColor:
                   hoveredImageName === "2" || selectedCircle === "2"
@@ -123,7 +151,7 @@ export default function PhotoWithTimelineMarker() {
               onMouseLeave={handleCircleMouseLeave}
             ></S.Circle>
             <S.Circle
-              name="3"
+              className="3"
               style={{
                 backgroundColor:
                   hoveredImageName === "3" || selectedCircle === "3"
@@ -135,18 +163,21 @@ export default function PhotoWithTimelineMarker() {
             ></S.Circle>
           </S.CircleContainer>
           <S.DataInfoBox>
-            {dataInfo.days.map((day, index) => (
-              <S.Data key={index}>
-                <S.DayText>{day}</S.DayText>
-                <h4>{dataInfo.explanation[index]}</h4>
-              </S.Data>
-            ))}
+            {getItem.map(
+              (item, idx) =>
+                idx < 3 && (
+                  <S.Data key={idx}>
+                    <S.DayText>{item.datetime}</S.DayText>
+                    <h4>{item.name}</h4>
+                  </S.Data>
+                )
+            )}
           </S.DataInfoBox>
         </div>
 
         <S.ImgContainer>
           <S.Img
-            name="4"
+            className="4"
             src={Img4}
             alt="error"
             onMouseEnter={() => handleImgMouseEnter("4")}
@@ -164,7 +195,7 @@ export default function PhotoWithTimelineMarker() {
           </div>
 
           <S.Img
-            name="5"
+            className="5"
             src={Img5}
             alt="error"
             onMouseEnter={() => handleImgMouseEnter("5")}
@@ -181,7 +212,7 @@ export default function PhotoWithTimelineMarker() {
               isHovered && <S.Flower src={Img7} alt="error" />}
           </div>
           <S.Img
-            name="6"
+            className="6"
             src={Img6}
             alt="error"
             onMouseEnter={() => handleImgMouseEnter("6")}
@@ -202,7 +233,7 @@ export default function PhotoWithTimelineMarker() {
           <S.Bar2></S.Bar2>
           <S.CircleContainer>
             <S.Circle
-              name="4"
+              className="4"
               style={{
                 backgroundColor:
                   hoveredImageName === "4" || selectedCircle === "4"
@@ -213,7 +244,7 @@ export default function PhotoWithTimelineMarker() {
               onMouseLeave={handleCircleMouseLeave}
             ></S.Circle>
             <S.Circle
-              name="5"
+              className="5"
               style={{
                 backgroundColor:
                   hoveredImageName === "5" || selectedCircle === "5"
@@ -224,7 +255,7 @@ export default function PhotoWithTimelineMarker() {
               onMouseLeave={handleCircleMouseLeave}
             ></S.Circle>
             <S.Circle
-              name="6"
+              className="6"
               style={{
                 backgroundColor:
                   hoveredImageName === "6" || selectedCircle === "6"
@@ -236,12 +267,15 @@ export default function PhotoWithTimelineMarker() {
             ></S.Circle>
           </S.CircleContainer>
           <S.DataInfoBox>
-            {dataInfo.days.map((day, index) => (
-              <S.Data key={index}>
-                <S.DayText>{day}</S.DayText>
-                <h4>{dataInfo.explanation[index]}</h4>
-              </S.Data>
-            ))}
+            {getItem.map(
+              (item, idx) =>
+                idx > 3 && (
+                  <S.Data key={idx}>
+                    <S.DayText>{item.datetime}</S.DayText>
+                    <h4>{item.name}</h4>
+                  </S.Data>
+                )
+            )}
           </S.DataInfoBox>
         </div>
       </S.ImgBox>

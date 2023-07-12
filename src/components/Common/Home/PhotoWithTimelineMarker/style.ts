@@ -57,11 +57,10 @@ export const DataInfoBox = styled.div`
   align-items: center;
   text-align: center;
   justify-content: center;
-  margin-left: -23%;
 `;
 
 export const Data = styled.div`
-  margin-left: 19%;
+  width: 480px;
 `;
 
 export const DayText = styled.h4`
