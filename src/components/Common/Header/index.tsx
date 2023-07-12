@@ -11,9 +11,7 @@ export default function Header() {
         <S.HeaderTitle src={Logo} onClick={() => navigate("/")}></S.HeaderTitle>
         <S.HeaderCategories>
           <S.Element onClick={() => navigate("/Accident")}>사건등록</S.Element>
-          <S.Element onClick={() => navigate("/VictimRegistration")}>
-            희생자등록
-          </S.Element>
+          <S.Element onClick={() => navigate("/Victim")}>희생자등록</S.Element>
         </S.HeaderCategories>
       </S.Header>
     </header>
