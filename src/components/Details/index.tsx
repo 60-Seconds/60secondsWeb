@@ -59,6 +59,11 @@ const Details: React.FC = () => {
     }
   };
 
+  const handleChangerPage = () => {
+    const url = `http://172.16.1.136:3000/?disaster=${idxValue}`;
+    window.location.href = url;
+  };
+
   if (!victimData) {
     return <div>Loading...</div>;
   }
@@ -67,7 +72,7 @@ const Details: React.FC = () => {
     <div>
       <Header />
       <S.TitleImg src={Img} alt="error" />
-      <S.MemorialHall>
+      <S.MemorialHall onClick={() => handleChangerPage()}>
         <S.Flower src={Img2} />
         <S.Info1>
           여러분의 국화 한 송이가
