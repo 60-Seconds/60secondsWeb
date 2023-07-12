@@ -7,6 +7,7 @@ import Header from "../Common/Header";
 import * as S from "./stlye";
 import Img from "../../assets/성수대교 붕괴 사고 1995-1.png";
 import Img2 from "../../assets/국화꽃png-removebg-preview.png";
+import { useNavigate, useLocation } from "react-router-dom";
 
 const Details: React.FC = () => {
   const { idxValue } = useParams<{ idxValue: string }>();
@@ -15,6 +16,10 @@ const Details: React.FC = () => {
   const [victimClick, setVictimClick] = useState(false);
   const [victimInfo, setVictimInfo] = useState<VictimType | null>(null);
 
+  const { pathname } = useLocation();
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, [pathname]);
   useEffect(() => {
     const fetchData = async () => {
       try {
